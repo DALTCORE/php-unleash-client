@@ -49,14 +49,12 @@ class Client
     public function instance() : HttpClient
     {
         $client = new HttpClient([
-            'base_uri' => $this->apiUrl,
-            'headers', [
+            'base_uri' => rtrim($this->apiUrl, '/') . '/',
+            'headers' => [
                 'UNLEASH-APPNAME' => $this->applicationName,
                 'UNLEASH-INSTANCEID' => $this->instanceId,
             ]
         ]);
-
-        dd($client->getConfig());
 
         return $client;
     }

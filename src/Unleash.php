@@ -2,10 +2,9 @@
 
 namespace DALTCORE;
 
-use DALTCORE\Api\Client as UnleashClient;
+use DALTCORE\Api\Client;
+use DALTCORE\Client\Feature;
 use DALTCORE\Exception\MissingParameterException;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
 
 class Unleash
 {
@@ -39,7 +38,7 @@ class Unleash
             throw new MissingParameterException('applicationName');
         }
 
-        $client = new UnleashClient($apiUrl, $instanceId, $applicationName);
+        $client = new Client($apiUrl, $instanceId, $applicationName);
         $this->guzzle = $client->instance();
     }
 
@@ -50,11 +49,8 @@ class Unleash
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface|null
      */
-    public function feature() {
-        $response = $this->guzzle->get('');
-
-        dd($response);
-
-        return $response->getBody()->getContents() ?? null;
+    public function feature($feature = null)
+    {
+        return (new Feature($this->guzzle))->getFeature($feature);
     }
 }
