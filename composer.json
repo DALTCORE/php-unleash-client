@@ -1,0 +1,19 @@
+{
+    "name": "daltcore/php-unleash-client",
+    "description": "A PHP client for https://github.com/Unleash/unleash",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ramon Smit",
+            "email": "rsmit@daltcore.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
